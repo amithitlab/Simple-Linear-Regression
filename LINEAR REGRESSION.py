@@ -49,7 +49,7 @@ def grad_descent(x,y,alpha):
             c2=cost(x,y,alpha)
             if(i%100==0):
                 print(c2)
-        return c2,theta
+        return theta
             
             
 def cost(x,y,alpha):
@@ -59,7 +59,7 @@ def cost(x,y,alpha):
     return c1
 
 data_preprocess()
-a,b=grad_descent(x,y,alpha)
+b=grad_descent(x,y,alpha)
 
 prediction=np.matmul(x1,b)
 

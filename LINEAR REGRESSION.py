@@ -11,26 +11,24 @@ import pandas as pd
 
 np.set_printoptions(suppress=True)
 
-data= pd.read_csv("train.csv")
-data=data.dropna()
-x=np.array(data["x"])
-y=np.array(data["y"])
-theta=np.random.randn(2,1)*0.01
-alpha=0.0001
 
+data,x,y,x1,y1,alpha,theta,one,one1=None,None,None,None,None,None,None,None,None
 
-
-data1=pd.read_csv("test.csv")
-data1=data1.dropna()
-x1=np.array(data1["x"])
-
-y1=np.array(data1["y"])
-
-one1=np.ones((x1.shape[0],1))
 
 
 def data_preprocess():
-    global x,y,x1,y1
+    global x,y,x1,y1,data,alpha,theta,one,one1
+    data= pd.read_csv("train.csv")
+    data=data.dropna()
+    x=np.array(data["x"])
+    y=np.array(data["y"])
+    theta=np.random.randn(2,1)*0.01
+    alpha=0.0001  
+    data1=pd.read_csv("test.csv")
+    data1=data1.dropna()
+    x1=np.array(data1["x"])
+    y1=np.array(data1["y"])
+    one1=np.ones((x1.shape[0],1))
     x=x.reshape(-1,1)
     y=y.reshape(-1,1)
     x1=x1.reshape(-1,1)
@@ -41,6 +39,7 @@ def data_preprocess():
 
 
 def grad_descent(x,y,alpha):
+    
         t=x.T
         for i in range(10000):
             global theta,yhat,c2
@@ -61,7 +60,7 @@ def cost(x,y,alpha):
 data_preprocess()
 b=grad_descent(x,y,alpha)
 
-prediction=np.matmul(x1,b)
+ui=np.matmul(x1,b)
 
 plt.scatter(x1[:,1], y1)
 axes = plt.gca()
